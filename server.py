@@ -9,14 +9,16 @@ print('waiting for connection')
 conn, client_addr = sock.accept()
 print(f'connection from {client_addr}')
 
-while True:
-    data = conn.recv(1024).decode() # decode byte from client
-    if data:
-        print('from client: ' + str(data))
-        data = input('=>=> ')
-        conn.send(data.encode()) # encode the string into byte for client
-    else:
-        break
+try:
+    while True:
+        data = conn.recv(1024).decode() # decode byte from client
+        if data:
+            print('from client: ' + str(data))
+            data = input('=>=> ')
+            conn.send(data.encode()) # encode the string into byte for client
+        else:
+            break
 
-conn.close()
-print('client left')
+finally:
+    conn.close()
+    print('client left')
