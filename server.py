@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 import socket
+import sys
 
+port = int(sys.argv[1])
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.bind(('127.0.0.1', 8888))
+sock.bind(('127.0.0.1', port))
 sock.listen(2) # how many clients to listen to
 
 # maintains connection forever
